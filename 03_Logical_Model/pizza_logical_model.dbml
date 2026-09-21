@@ -1,1 +1,90 @@
-// Logical data model for Pizza Business Performance Analysis
+Table Customer { 
+  Customer_Id int [pk]
+  First_Name varchar
+  Last_Name varchar
+  Gender varchar
+  Birthdate date
+  Email varchar
+  Phone varchar 
+}
+Table Order {
+  Order_Id int [pk]
+  Customer_Id int
+  Order_Date datetime
+  Address_Id vachar
+} 
+Table Product {
+  Product_Id int 
+  Product_Name varchar
+  Category_Id int
+  } 
+Table Order_Item {
+  Order_Item_Id int [PK]
+  Order_Id int 
+  Product_Id int 
+  Qunantity int 
+  Unit_Price Decimal 
+  Size varchar 
+}
+Table Category { 
+  Category_Id int  [PK]
+  Category_Name varchar
+}
+Table Address {
+ Address_Id  VARCHAR  [PK]
+ Customer_Id int
+ Address_Line varchar
+ City varchar 
+}
+Table Ingredient {
+ Ingredient_Id int [PK]
+ Ingredient varchar
+}
+Table Recipe { 
+  Recipe_Id int [PK]
+  Ingredient_Id int
+  Product_Id int 
+  Quantity_Required decimal 
+  Size varchar 
+  Unit varchar
+}
+Table Inventory {
+  Inventory_Id int [PK]
+  Ingredient_Id int 
+  Current_Stock decimal 
+  Reorder_Level decimal 
+  Unit varchar
+}
+Table Staff {
+  Staff_Id int [pk]
+  First_Name Varchar 
+  Last_Name varchar 
+  Role Varchar 
+  Salary decimal  
+}
+Table Shift {
+  Shift_Id int [pk]
+  Shift_Name varchar 
+  Start_Time time 
+  End_Time time 
+  Day varchar 
+}
+Table Rota {
+  Rota_Id int [pk]
+  Staff_Id int 
+  Shift_Id int 
+  }
+
+  Ref:"Customer"."Customer_Id" < "Order"."Customer_Id"
+  Ref:"Order". "Order_Id" < "Order_Item"."Order_Id"
+  Ref:"Product". "Product_Id" < "Order_Item"."Product_Id"
+  Ref:"Category". "Category_Id" < "Product"."Product_Id" 
+  Ref:"Product"."Product_Id" < "Recipe"."Product_Id"
+  Ref:"Ingredient"."Ingredient_Id" < "Recipe"."Ingredient_Id"
+  Ref:"Order"."Address_Id" < "Address"."Address_Id" 
+  Ref:"Customer". "Customer_Id" < "Address"."Address_Id" 
+  Ref:"Shift"."Shift_Id" < "Rota"."Shift_Id"
+  Ref:"Staff"."Staff_Id" < "Rota"."Shift_Id"
+  Ref:"Ingredient"."Ingredient_Id"< "Inventory"."Ingredient_Id"
+
+
