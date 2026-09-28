@@ -14,7 +14,18 @@ WARNING: Running this script will delete existing data in these tables.
 */
 
 -- ==========================================================================================================================================
--- 1. CREATE SCHEMA
+-- 1. CREATE DATABASE
+-- ==========================================================================================================================================
+IF DB_ID ('PizzaBusiness') IS NULL
+BEGIN
+    EXEC('CREATE DATABASE PizzaBusiness');
+END;
+GO
+    USE PizzaBusiness;
+GO
+
+-- ==========================================================================================================================================
+-- 2. CREATE SCHEMA
 -- ==========================================================================================================================================
 IF SCHEMA_ID ('Pizza') IS NULL
 BEGIN
@@ -23,7 +34,7 @@ END;
 GO
 
 -- ==========================================================================================================================================
--- 2. DROP EXISTING TABLES
+-- 3. DROP EXISTING TABLES
 -- Tables are dropped in reverse dependency order so that existing foreign-key relationships do not prevent the tables from being removed 
 -- ============================================================================================================================================
 IF OBJECT_iD('Pizza.Rota', 'U') IS NOT NULL
@@ -71,7 +82,7 @@ IF OBJECT_iD('Pizza.Customer', 'U') IS NOT NULL
 GO
 
 -- ============================================================================================
--- 3. CUSTOMER
+-- 4. CUSTOMER
 -- Stores customer information so that customer activity can be analysed across multiple orders.
 -- =============================================================================================
 CREATE TABLE Pizza.Customer (
@@ -86,7 +97,7 @@ CREATE TABLE Pizza.Customer (
 GO
 
  -- ============================================================================================
- -- 4. CATEGORY
+ -- 5. CATEGORY
  -- Stores the product categories such as pizzas, sides, desserts, and beverages.
  -- ============================================================================================
 CREATE TABLE Pizza.Category (
@@ -96,7 +107,7 @@ CREATE TABLE Pizza.Category (
  GO
 
    -- ============================================================================================
-  -- 5. INGREDIENT
+  -- 6. INGREDIENT
   -- Stores the raw materials used in preparation of products.
    -- ============================================================================================
   CREATE TABLE Pizza.Ingredient (
@@ -107,7 +118,7 @@ CREATE TABLE Pizza.Category (
 
        
   -- ============================================================================================
-  -- 6. ADDRESS
+  -- 7. ADDRESS
   -- Stores delivery addresses associated with customers. A customer may have multiple addresses, while each address belongs to one customer.
   -- =============================================================================================
 CREATE TABLE Pizza.Address (
@@ -123,7 +134,7 @@ CREATE TABLE Pizza.Address (
   GO
   
  -- ============================================================================================
- -- 7. PRODUCT
+ -- 8. PRODUCT
  -- It represents each distinct goods the business offers for sale. Current_Price represents the current menu price, while the actual price charged at the time of an order is stored seperately in Order_Item.Unit_Price.
  -- ============================================================================================
 CREATE TABLE Pizza.Product (
@@ -142,7 +153,7 @@ CREATE TABLE Pizza.Product (
  GO
 
  -- ============================================================================================
- -- 8. ORDER
+ -- 9. ORDER
  -- Stores the overall customer transaction. Address_Id is nullable because the business can support both delivery and pickup orders.
  -- =============================================================================================
 CREATE TABLE Pizza.[Order] (
@@ -162,7 +173,7 @@ CREATE TABLE Pizza.[Order] (
 GO
   
  -- ==============================================================================================
- -- 9. ORDER_ITEM
+ -- 10. ORDER_ITEM
  -- Represents an individual product line within an order. Unit_Price records the price charged at the time of the transaction rather than relying on the produuct's current menu price
  -- =============================================================================================
 CREATE TABLE Pizza.Order_Item (
@@ -186,7 +197,7 @@ CREATE TABLE Pizza.Order_Item (
 GO
 
   -- ==============================================================================================
-  -- 10. RECIPE
+  -- 11. RECIPE
   -- Resolves many-to-many relationship between products and ingredients. Quantity_Required records the amount of an ingredient required for a particular product and size.
   -- ==============================================================================================
   CREATE TABLE Pizza.Recipe (
@@ -211,7 +222,7 @@ GO
      GO
 
      -- ==============================================================================================
-     -- 11. INVENTORY
+     -- 12. INVENTORY
      -- Stores the current stock position and reorder threshold for each ingredient. The business actually operates with one physical inventory location, with each ingredients having one inventory record.
      -- ==============================================================================================
     CREATE TABLE Pizza.Inventory (
@@ -234,7 +245,7 @@ GO
       GO
         
     -- ==============================================================================================
-    -- 12. STAFF
+    -- 13. STAFF
     -- Stores employee information required for staff scheduling and labour-cost analysis.
     -- ==============================================================================================
       CREATE TABLE Pizza.Staff (
@@ -250,7 +261,7 @@ GO
         GO
 
     -- ==============================================================================================
-    -- 13. SHIFT
+    -- 14. SHIFT
     -- Defines the working periods available for staff scheduling.
     -- ==============================================================================================
       CREATE TABLE Pizza.Shift (
@@ -267,7 +278,7 @@ GO
           GO
 
          -- ==============================================================================================
-         -- 14. ROTA
+         -- 15. ROTA
          -- Links staff members to their assigned working shifts (associative/scheduling table).
          -- ==============================================================================================
         CREATE TABLE Pizza.Rota (
