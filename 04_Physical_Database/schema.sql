@@ -127,7 +127,7 @@ CREATE TABLE Pizza.Address (
     Address_Line VARCHAR (255) NOT NULL,
     City VARCHAR (100) NOT NULL,
 
-      CONSTRAINTS FK_Address_Customer
+      CONSTRAINT FK_Address_Customer
           FOREIGN KEY (Customer_Id) 
           REFERENCES Pizza.Customer (Customer_Id) 
   );
@@ -159,7 +159,7 @@ CREATE TABLE Pizza.Product (
 CREATE TABLE Pizza.[Order] (
     Order_Id INT IDENTITY (1,1) PRIMARY KEY,
     Customer_Id INT NOT NULL,
-    Order_Date DATETIME2 NOT NULL
+    Order_Date DATETIME2 NOT NULL,
     Address_Id VARCHAR(20) NULL,
   
  CONSTRAINT FK_Order_Customer
@@ -188,8 +188,12 @@ CREATE TABLE Pizza.Order_Item (
      FOREIGN KEY (Product_Id) 
      REFERENCES Pizza.Product (Product_Id) ,
 
+  CONSTRAINT FK_OrderItem_Order
+     FOREIGN KEY (Order_Id) 
+     REFERENCES Pizza.[Order] (Order_Id) ,
+
   CONSTRAINT CK_OrderItem_Quantity
-     CHECK (Quantity) > 0) ,
+     CHECK (Quantity > 0) ,
 
  CONSTRAINT CK_OrderItem_UnitPrice
      CHECK (Unit_Price >= 0) 
@@ -201,22 +205,22 @@ GO
   -- Resolves many-to-many relationship between products and ingredients. Quantity_Required records the amount of an ingredient required for a particular product and size.
   -- ==============================================================================================
   CREATE TABLE Pizza.Recipe (
-      Recipe_Id INT IDENTITY (1,) PRIMARY KEY,
+      Recipe_Id INT IDENTITY (1,1) PRIMARY KEY,
       Product_Id INT NOT NULL,
       Ingredient_Id INT NOT NULL,
       Quantity_Required DECIMAL (10,3) NOT NULL,
       Size VARCHAR (20) NULL,
       Unit VARCHAR (20) NOT NULL,
 
-      CONSTRAINTS FK_Recipe_Product
+      CONSTRAINT FK_Recipe_Product
          FOREIGN KEY (Product_Id)
          REFERENCES Pizza.Product (Product_Id),
       
-      CONSTRAINTS FK_Recipe_Ingredient
+      CONSTRAINT FK_Recipe_Ingredient
          FOREIGN KEY (Ingredient_Id)
          REFERENCES Pizza.Ingredient (Ingredient_Id),
 
-      CONSTRAINTS CK_Recipe_Quantity
+      CONSTRAINT  CK_Recipe_Quantity
          CHECK (Quantity_Required > 0)
      );
      GO
@@ -229,18 +233,18 @@ GO
        Inventory_Id INT IDENTITY ( 1,1) PRIMARY KEY,
        Ingredient_Id INT UNIQUE NOT NULL,
        Current_Stock DECIMAL (10,3) NOT NULL,
-       Reoder_Level  DECIMAL (10,3) NOT NULL,
+       Reorder_Level  DECIMAL (10,3) NOT NULL,
        Unit VARCHAR (20) NOT NULL,
 
        CONSTRAINT Fk_Inventory_Ingredient
           FOREIGN KEY  (Ingredient_Id)
-          REFERENCES Pizza.Ingredient (Ingredient_id),
+          REFERENCES Pizza.Ingredient (Ingredient_Id),
 
        CONSTRAINT Ck_Inventory_CurrentStock
           CHECK (Current_Stock >= 0),
 
        CONSTRAINT Ck_Inventory_ReorderLevel
-          CHECK (Reoder_Level >= 0)
+          CHECK (Reorder_Level >= 0)
        );
       GO
         
@@ -249,8 +253,8 @@ GO
     -- Stores employee information required for staff scheduling and labour-cost analysis.
     -- ==============================================================================================
       CREATE TABLE Pizza.Staff (
-          Staff_Id INT IDENTTITY (1,1) PRIMARY KEY,
-          First_Name VARCHHAR (50) NOT NULL,
+          Staff_Id INT IDENTITY (1,1) PRIMARY KEY,
+          First_Name VARCHAR (50) NOT NULL,
           Last_Name  VARCHAR (50)  NOT NULL,
           Role  VARCHAR (50) NOT NULL,
           Salary DECIMAL (12,2) NOT NULL,
@@ -283,12 +287,12 @@ GO
          -- ==============================================================================================
         CREATE TABLE Pizza.Rota (
             Rota_Id INT IDENTITY (1,1) PRIMARY KEY,
-            Staff_id INT NOT NULL,
+            Staff_Id INT NOT NULL,
             Shift_Id INT  NOT NULL,
 
             CONSTRAINT Fk_Rota_Staff
-               FOREIGN KEY (Staff_id)
-               REFERENCES pizza.Staff (Staff_id),
+               FOREIGN KEY (Staff_Id)
+               REFERENCES Pizza.Staff (Staff_Id),
 
             CONSTRAINT Fk_Rota_Shift
                FOREIGN KEY (Shift_Id)
