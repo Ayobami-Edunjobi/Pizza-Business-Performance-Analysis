@@ -45,6 +45,9 @@ IF OBJECT_iD('Pizza.Shift', 'U') IS NOT NULL
       DROP TABLE Pizza.Shift;
 GO
 
+IF OBJECT_iD('Pizza.Staff', 'U') IS NOT NULL
+      DROP TABLE Pizza.Staff;
+
 IF OBJECT_iD('Pizza.Inventory', 'U') IS NOT NULL
       DROP TABLE Pizza.Inventory;
 GO
