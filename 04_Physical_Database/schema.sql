@@ -129,6 +129,8 @@ CREATE TABLE Pizza.Address (
     Customer_Id INT NOT NULL,
     Address_Line VARCHAR (255) NOT NULL,
     City VARCHAR (100) NOT NULL,
+    State VARCHAR (2) NOT NULL,
+    Postal_code VARCHAR (10) NOT NULL,
 
       CONSTRAINT FK_Address_Customer
           FOREIGN KEY (Customer_Id) 
