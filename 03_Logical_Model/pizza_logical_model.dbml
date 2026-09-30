@@ -1,78 +1,80 @@
 Table Customer { 
-  Customer_Id int [pk]
-  First_Name varchar
-  Last_Name varchar
-  Gender varchar
-  Birthdate date
-  Email varchar
-  Phone varchar 
+  Customer_Id Int [pk]
+  First_Name Varchar
+  Last_Name Varchar
+  Gender Varchar
+  Birthdate Date
+  Email Varchar
+  Phone Varchar 
 }
 Table Order {
-  Order_Id int [pk]
-  Customer_Id int
-  Order_Date datetime
-  Address_Id vachar
+  Order_Id Int [pk]
+  Customer_Id Int
+  Order_Date Datetime
+  Address_Id Varchar
 } 
 Table Product {
-  Product_Id int 
+  Product_Id Int 
   Product_Name varchar
-  Category_Id int
+  Category_Id Int
   } 
 Table Order_Item {
-  Order_Item_Id int [PK]
-  Order_Id int 
-  Product_Id int 
-  Qunantity int 
+  Order_Item_Id Int [PK]
+  Order_Id Int 
+  Product_Id Int 
+  Qunantity Int 
   Unit_Price Decimal 
-  Size varchar 
+  Size Varchar 
 }
 Table Category { 
-  Category_Id int  [PK]
-  Category_Name varchar
+  Category_Id Int  [PK]
+  Category_Name Varchar
 }
 Table Address {
- Address_Id  VARCHAR  [PK]
- Customer_Id int
- Address_Line varchar
+ Address_Id  Varchar [PK]
+ Customer_Id Int
+ Address_Line Varchar
  City varchar 
+ State Varchar
+ Postal_Code Varchar
 }
 Table Ingredient {
- Ingredient_Id int [PK]
- Ingredient varchar
+ Ingredient_Id Int [PK]
+ Ingredient Varchar
 }
 Table Recipe { 
-  Recipe_Id int [PK]
-  Ingredient_Id int
-  Product_Id int 
-  Quantity_Required decimal 
-  Size varchar 
-  Unit varchar
+  Recipe_Id Int [PK]
+  Ingredient_Id Int
+  Product_Id Int 
+  Quantity_Required Decimal 
+  Size Varchar 
+  Unit Varchar
 }
 Table Inventory {
-  Inventory_Id int [PK]
-  Ingredient_Id int 
-  Current_Stock decimal 
-  Reorder_Level decimal 
-  Unit varchar
+  Inventory_Id Int [PK]
+  Ingredient_Id Int 
+  Current_Stock Decimal 
+  Reorder_Level Decimal 
+  Unit Varchar
 }
 Table Staff {
-  Staff_Id int [pk]
+  Staff_Id Int [pk]
   First_Name Varchar 
-  Last_Name varchar 
+  Last_Name Varchar 
   Role Varchar 
-  Salary decimal  
+  Salary Decimal  
 }
 Table Shift {
-  Shift_Id int [pk]
-  Shift_Name varchar 
-  Start_Time time 
-  End_Time time 
-  Day varchar 
+  Shift_Id Int [pk]
+  Shift_Name Varchar 
+  Start_Time Time 
+  End_Time Time 
+  Day Varchar 
 }
 Table Rota {
-  Rota_Id int [pk]
-  Staff_Id int 
-  Shift_Id int 
+  Rota_Id Int [pk]
+  Staff_Id Int 
+  Shift_Id Int 
   }
 
   Ref:"Customer"."Customer_Id" < "Order"."Customer_Id"
