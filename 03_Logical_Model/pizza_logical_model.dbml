@@ -1,5 +1,5 @@
 Table Customer { 
-  Customer_Id Int [pk]
+  Customer_Id Int [PK]
   First_Name Varchar
   Last_Name Varchar
   Gender Varchar
@@ -8,7 +8,7 @@ Table Customer {
   Phone Varchar 
 }
 Table Order {
-  Order_Id Int [pk]
+  Order_Id Int [PK]
   Customer_Id Int
   Order_Date Datetime
   Address_Id Varchar
@@ -58,21 +58,21 @@ Table Inventory {
   Unit Varchar
 }
 Table Staff {
-  Staff_Id Int [pk]
+  Staff_Id Int [PK]
   First_Name Varchar 
   Last_Name Varchar 
   Role Varchar 
   Salary Decimal  
 }
 Table Shift {
-  Shift_Id Int [pk]
+  Shift_Id Int [PK]
   Shift_Name Varchar 
   Start_Time Time 
   End_Time Time 
   Day Varchar 
 }
 Table Rota {
-  Rota_Id Int [pk]
+  Rota_Id Int [PK]
   Staff_Id Int 
   Shift_Id Int 
   }
