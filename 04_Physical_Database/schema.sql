@@ -99,8 +99,8 @@ CREATE TABLE Pizza.Customer (
 );
 GO
 
- -- ============================================================================================
- -- 5. CATEGORY
+  -- ============================================================================================
+  -- 5. CATEGORY
  -- Stores the product categories such as pizzas, sides, desserts, and beverages.
  -- ============================================================================================
 CREATE TABLE Pizza.Category (
@@ -129,8 +129,6 @@ CREATE TABLE Pizza.Address (
     Customer_Id INT NOT NULL,
     Address_Line VARCHAR (255) NOT NULL,
     City VARCHAR (100) NOT NULL,
-    State VARCHAR (2) NOT NULL,
-    Postal_code VARCHAR (10) NOT NULL,
 
       CONSTRAINT FK_Address_Customer
           FOREIGN KEY (Customer_Id) 
@@ -156,7 +154,7 @@ CREATE TABLE Pizza.Product (
       CHECK (Current_Price >=0) 
   );
  GO
-
+ 
  -- ============================================================================================
  -- 9. ORDER
  -- Stores the overall customer transaction. Address_Id is nullable because the business can support both delivery and pickup orders.
@@ -276,7 +274,6 @@ GO
       CREATE TABLE Pizza.Shift (
           Shift_Id INT IDENTITY(1,1) PRIMARY KEY,
           Shift_Name VARCHAR(70) NOT NULL,
-          Shift_Time TIME NOT NULL,
           Start_Time TIME NOT NULL,
           End_Time  TIME  NOT NULL,
           Day VARCHAR(20) NOT NULL,
@@ -294,6 +291,7 @@ GO
             Rota_Id INT IDENTITY (1,1) PRIMARY KEY,
             Staff_Id INT NOT NULL,
             Shift_Id INT  NOT NULL,
+            Rota_date DATE NULL,
 
             CONSTRAINT Fk_Rota_Staff
                FOREIGN KEY (Staff_Id)
@@ -304,14 +302,6 @@ GO
                REFERENCES Pizza.Shift (Shift_Id)
             );
             GO
-
-           
-
-
-
-           
-
-
 
 
 
