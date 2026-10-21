@@ -92,9 +92,9 @@ CREATE TABLE Pizza.Customer (
     Customer_Id INT IDENTITY (1,1) PRIMARY KEY,
     First_Name VARCHAR(50) NOT NULL,
     Last_Name VARCHAR (50) NOT NULL,
-    Gender VARCHAR (20) NULL,
+    Gender VARCHAR (20) NOT NULL,
     Birthdate DATE NULL,
-    Email VARCHAR (255) NULL UNIQUE,
+    Email VARCHAR (255) NOT NULL UNIQUE,
     Phone VARCHAR (30)  NULL
 );
 GO
@@ -125,10 +125,12 @@ CREATE TABLE Pizza.Category (
   -- Stores delivery addresses associated with customers. A customer may have multiple addresses, while each address belongs to one customer.
   -- =============================================================================================
 CREATE TABLE Pizza.Address (
-    Address_Id VARCHAR (20) PRIMARY KEY,
+    Address_Id VARCHAR (15) PRIMARY KEY,
     Customer_Id INT NOT NULL,
     Address_Line VARCHAR (255) NOT NULL,
     City VARCHAR (100) NOT NULL,
+    State VARCHAR (20) NOT NULL,
+    Postal_Code VARCHAR(40) NOT  NULL
 
       CONSTRAINT FK_Address_Customer
           FOREIGN KEY (Customer_Id) 
@@ -163,7 +165,7 @@ CREATE TABLE Pizza.[Order] (
     Order_Id INT IDENTITY (1,1) PRIMARY KEY,
     Customer_Id INT NOT NULL,
     Order_Date DATETIME2 NOT NULL,
-    Address_Id VARCHAR(20) NULL,
+    Address_Id VARCHAR(15) NULL,
   
  CONSTRAINT FK_Order_Customer
     FOREIGN KEY (Customer_Id)
@@ -302,21 +304,6 @@ GO
                REFERENCES Pizza.Shift (Shift_Id)
             );
             GO
-
-
-
-
-
-
-
-
-
-         
-
-      
-      
-
-
 
 
 
