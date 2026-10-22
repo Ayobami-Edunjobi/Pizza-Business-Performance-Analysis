@@ -21,6 +21,7 @@ Method
 
 Based on the current dataset:
 
+
 . Pizza: $151,642 in revenue, approximately 83.4% of total revenue.
 . Sides: $17,755 in revenue, approximately 9.8%.
 . Beverages: $7,009 in revenue, approximately 3.9%.
@@ -32,6 +33,10 @@ Business implication
 
 Pizza is leading revenue- generating category in this dataset. management could investigate which pizza products drive this performance, while exploring opportunities to increase sales of sides, 
 beverages, and desserts.
+
+
+Pepperoni Pizza generated the highest recorded product revenue of $14,722. This identifies it as the leading contributor among individual products in the current dataset. Management could 
+investigate its sales drivers and consider whether complementary products offer opportunities to increase order value.
 
 
 
