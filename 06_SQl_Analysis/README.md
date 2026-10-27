@@ -38,6 +38,16 @@ beverages, and desserts.
 Pepperoni Pizza generated the highest recorded product revenue of $14,722. This identifies it as the leading contributor among individual products in the current dataset. Management could 
 investigate its sales drivers and consider whether complementary products offer opportunities to increase order value.
 
+Additional analysis: December revenue growth
+
+To investigate the $1,946 increase in revenue between December 2024 and December 2025, I compared revenue by product across both periods using SQL Server.
+
+The analysis uses conditional aggregation to place each product's revenue for both Decembers side by side and calculate the year-over-year revenue change.
+
+The objective is to identify which products contributed most to the increase and which products experienced a decline.
+
+The results are interpreted alongside changes in order volume, units sold, and average order value.
+
 
 
 
