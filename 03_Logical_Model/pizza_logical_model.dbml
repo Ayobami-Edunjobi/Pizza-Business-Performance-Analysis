@@ -1,0 +1,92 @@
+Table Customer { 
+  Customer_Id Int [PK]
+  First_Name Varchar
+  Last_Name Varchar
+  Gender Varchar
+  Birthdate Date
+  Email Varchar
+  Phone Varchar 
+}
+Table Order {
+  Order_Id Int [PK]
+  Customer_Id Int
+  Order_Date Datetime
+  Address_Id Varchar
+} 
+Table Product {
+  Product_Id Int 
+  Product_Name varchar
+  Category_Id Int
+  } 
+Table Order_Item {
+  Order_Item_Id Int [PK]
+  Order_Id Int 
+  Product_Id Int 
+  Qunantity Int 
+  Unit_Price Decimal 
+  Size Varchar 
+}
+Table Category { 
+  Category_Id Int  [PK]
+  Category_Name Varchar
+}
+Table Address {
+ Address_Id  Varchar [PK]
+ Customer_Id Int
+ Address_Line Varchar
+ City varchar 
+ State Varchar
+ Postal_Code Varchar
+}
+Table Ingredient {
+ Ingredient_Id Int [PK]
+ Ingredient Varchar
+}
+Table Recipe { 
+  Recipe_Id Int [PK]
+  Ingredient_Id Int
+  Product_Id Int 
+  Quantity_Required Decimal 
+  Size Varchar 
+  Unit Varchar
+}
+Table Inventory {
+  Inventory_Id Int [PK]
+  Ingredient_Id Int 
+  Current_Stock Decimal 
+  Reorder_Level Decimal 
+  Unit Varchar
+}
+Table Staff {
+  Staff_Id Int [PK]
+  First_Name Varchar 
+  Last_Name Varchar 
+  Role Varchar 
+  Salary Decimal  
+}
+Table Shift {
+  Shift_Id Int [PK]
+  Shift_Name Varchar 
+  Start_Time Time 
+  End_Time Time 
+  Day Varchar 
+}
+Table Rota {
+  Rota_Id Int [PK]
+  Staff_Id Int 
+  Shift_Id Int 
+  }
+
+  Ref:"Customer"."Customer_Id" < "Order"."Customer_Id"
+  Ref:"Order". "Order_Id" < "Order_Item"."Order_Id"
+  Ref:"Product". "Product_Id" < "Order_Item"."Product_Id"
+  Ref:"Category". "Category_Id" < "Product"."Product_Id" 
+  Ref:"Product"."Product_Id" < "Recipe"."Product_Id"
+  Ref:"Ingredient"."Ingredient_Id" < "Recipe"."Ingredient_Id"
+  Ref:"Order"."Address_Id" < "Address"."Address_Id" 
+  Ref:"Customer". "Customer_Id" < "Address"."Address_Id" 
+  Ref:"Shift"."Shift_Id" < "Rota"."Shift_Id"
+  Ref:"Staff"."Staff_Id" < "Rota"."Shift_Id"
+  Ref:"Ingredient"."Ingredient_Id"< "Inventory"."Ingredient_Id"
+
+

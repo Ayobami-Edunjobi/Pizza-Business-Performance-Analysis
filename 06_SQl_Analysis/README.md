@@ -1,0 +1,69 @@
+SQL Analysis
+
+Overview
+
+This folder contains SQL queries developed to analyse the business performance of Urban slice Pizza, a fictional business based in Tampa, Florida
+
+The analysis uses SQL Server to transform relational data into insights that can support business decision-making.
+
+Analysis 1: Revenue by Product Category
+
+Business question: Which product categories generate the most revenue, and what proportion of total revenue does each category contribute?
+
+Method
+
+. joined order_Item, Product, and Category tables.
+. Aggregated order_item records, units sold, and revenue by product category.
+. Used a common table expression (CTE) and window functions to calculate each category's contributions to total revenue.
+. Ranked the categories by revenue.
+
+ Findings
+
+Based on the current dataset:
+
+
+. Pizza: $151,642 in revenue, approximately 83.4% of total revenue.
+. Sides: $17,755 in revenue, approximately 9.8%.
+. Beverages: $7,009 in revenue, approximately 3.9%.
+. Desserts: $5,525 in revenue, approximately 3.0%.
+
+Total recorded revenue is $181,931 across 12,000 order_item records.
+
+Business implication
+
+Pizza is leading revenue- generating category in this dataset. management could investigate which pizza products drive this performance, while exploring opportunities to increase sales of sides, 
+beverages, and desserts.
+
+
+Pepperoni Pizza generated the highest recorded product revenue of $14,722. This identifies it as the leading contributor among individual products in the current dataset. Management could 
+investigate its sales drivers and consider whether complementary products offer opportunities to increase order value.
+
+Additional analysis: December revenue growth
+
+To investigate the $1,946 increase in revenue between December 2024 and December 2025, I compared revenue by product across both periods using SQL Server.
+
+The analysis uses conditional aggregation to place each product's revenue for both Decembers side by side and calculate the year-over-year revenue change.
+
+The objective is to identify which products contributed most to the increase and which products experienced a decline.
+
+The results are interpreted alongside changes in order volume, units sold, and average order value.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
