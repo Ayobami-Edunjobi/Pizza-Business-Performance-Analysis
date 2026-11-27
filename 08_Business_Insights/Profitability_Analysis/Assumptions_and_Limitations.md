@@ -77,7 +77,34 @@ The conversion factor will be applied during profitability
 calculations to ensure consistent units of measurement.
 
 
+## Data Quality Findings and Resolutions
 
+### 1. Eggs — Unit of Measurement
+
+The Recipe table records egg quantities in kilograms (Kg), while the Inventory table tracks eggs individually (Pieces).
+
+The business confirmed an average weight of 50 grams per egg.
+
+**Conversion rule:**
+- 1 Piece = 0.050 Kg
+- Current stock: 180 Pieces = 9 Kg
+- Reorder level: 60 Pieces = 3 Kg
+
+The conversion was validated in SQL Server.
+
+The original Recipe and Inventory records remain unchanged. The conversion factor will be applied during analytical calculations to ensure consistent units of measurement.
+
+### 2. Italian Seasoning — No Recorded Recipe Usage
+
+Ingredient_ID 32 (Italian Seasoning) exists in the Ingredient and Inventory tables but has no corresponding records in the Recipe table.
+
+This does not necessarily indicate a data-entry error. The ingredient may simply not be used in the recorded recipes.
+
+### 3. Data Integrity Approach
+
+Original operational records will remain unchanged unless a correction is supported by verified business information.
+
+Any supplementary assumptions, conversions, or simulated costing values introduced during the profitability analysis will be clearly identified and documented.
 
 
 
