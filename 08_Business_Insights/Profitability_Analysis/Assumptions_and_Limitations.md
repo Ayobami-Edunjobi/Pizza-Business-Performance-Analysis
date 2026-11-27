@@ -57,3 +57,43 @@ Any business recommendations will therefore consider these limitations.
 The original operational database and its imported records remain distinct from the supplementary costing data introduced for analytical purposes.
 
 This distinction ensures transparency, preserves the integrity of the original dataset and makes the assumptions behind the profitability analysis explicit.
+
+## Unit of Measurement: Eggs
+
+The Recipe table records egg quantities in kilograms (Kg),
+while the Inventory table tracks eggs individually (Pieces).
+
+The business confirmed an average weight of 50 grams per egg.
+
+Conversion rule:
+1 Piece = 0.050 Kg
+
+Illustrative inventory conversion:
+- Current stock: 180 Pieces = 9 Kg
+- Reorder level: 60 Pieces = 3 Kg
+
+The original Recipe and Inventory records remain unchanged.
+The conversion factor will be applied during profitability
+calculations to ensure consistent units of measurement.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
